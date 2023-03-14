@@ -1,5 +1,5 @@
 TEXTFILE = "phonebook.txt"
-
+# созание контакта
 def contact():
     array = list()
     for i in range(4):
@@ -14,13 +14,13 @@ def contact():
     cont = f'{array[0]} {array[1]} {array[2]} | {int(array[3])}'
     return cont
 
-
+# добавление контакта в справочник
 def add_contact():
     with open(TEXTFILE, 'a', encoding='utf-8') as file:
         file.writelines(f'{contact()}\n')
         
     
-    
+# поиск контакта по справочнику
 def search_contact():
     with open(TEXTFILE, 'r', encoding='utf-8') as file:
         find = input('Введите поиск контакта: ')
@@ -31,7 +31,7 @@ def search_contact():
                 print(f'{index}. {i}')
             index +=1
 
-
+# показывает спрвочник
 def show_phonebook():
     with open(TEXTFILE, 'r', encoding='utf-8') as file:
         book = file.read().split('\n')
@@ -41,7 +41,7 @@ def show_phonebook():
            index +=1
 
    
-
+# удаляет контакт из спавочника
 def del_contact():
     with open(TEXTFILE, 'r', encoding='utf-8') as file:
         book = file.read().split('\n')
@@ -57,12 +57,12 @@ def del_contact():
              for i in book:
                   file.writelines(f'{str(i)}\n')
 
-
+# редактирует контакт в справочнике
 def edit_contact():
     with open(TEXTFILE, 'r', encoding='utf-8') as file:
        with open(TEXTFILE, 'r', encoding='utf-8') as file:
         book = file.read().split('\n')
-        find = input('Введите данные контакта который хотите удалить: ')
+        find = input('Введите данные контакта который хотите изменить: ')
         index = 0
         for i in book:
             if find.lower() in i.lower():
