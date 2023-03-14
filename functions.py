@@ -26,10 +26,14 @@ def search_contact():
         find = input('Введите поиск контакта: ')
         book = file.read().split('\n')
         index = 1
+        temp = list()
         for i in book:
             if find.lower() in i.lower():
                 print(f'{index}. {i}')
+                temp.append(i)
             index +=1
+        if bool(temp) == False:
+            print('Нет такого контакта!')
 
 # показывает спрвочник
 def show_phonebook():
@@ -47,15 +51,19 @@ def del_contact():
         book = file.read().split('\n')
         find = input('Введите данные контакта который хотите удалить: ')
         index = 0
+        temp = list()
         for i in book:
             if find.lower() in i.lower():
                 print(f'Ведитете "{index}" чтобы удалить контакт "{i}"')
             index +=1
-        del_index = int(input(""))
-        book.pop(del_index)    
-        with open(TEXTFILE, 'w', encoding='utf-8') as file:
-             for i in book:
-                  file.writelines(f'{str(i)}\n')
+        if bool(temp):
+            del_index = int(input(""))
+            book.pop(del_index)    
+            with open(TEXTFILE, 'w', encoding='utf-8') as file:
+                for i in book:
+                    file.writelines(f'{str(i)}\n')
+        else:
+            print('Нет такого контакта!')
 
 # редактирует контакт в справочнике
 def edit_contact():
@@ -63,12 +71,17 @@ def edit_contact():
         book = file.read().split('\n')
         find = input('Введите данные контакта который хотите изменить: ')
         index = 0
+        temp = list()
         for i in book:
             if find.lower() in i.lower():
                 print(f'Ведитете "{index}" чтобы удалить контакт "{i}"')
+                temp.append(i)
             index +=1
-        remake_index = int(input(""))
-        book[remake_index] = contact()    
-        with open(TEXTFILE, 'w', encoding='utf-8') as file:
-             for i in book:
-                  file.writelines(f'{str(i)}\n')
+        if bool(temp):
+            remake_index = int(input(""))
+            book[remake_index] = contact()    
+            with open(TEXTFILE, 'w', encoding='utf-8') as file:
+                for i in book:
+                    file.writelines(f'{str(i)}\n')
+        else:
+            print('Нет такого контакта!')
