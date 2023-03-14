@@ -15,9 +15,8 @@ def contact():
             if  array[3].isdigit():
               break
             else:
-                print('Вы вввели строку')
+                print('Вы вввели строку, введите пожалуйста номер телефона!')
                 array[3] = input('Введите номер телефона: ')
-
     cont = f'{array[0]} {array[1]} {array[2]} | {int(array[3])}'
     return cont
 
