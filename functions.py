@@ -55,6 +55,7 @@ def del_contact():
         for i in book:
             if find.lower() in i.lower():
                 print(f'Ведитете "{index}" чтобы удалить контакт "{i}"')
+                temp.append(i)
             index +=1
         if bool(temp):
             del_index = int(input(""))
