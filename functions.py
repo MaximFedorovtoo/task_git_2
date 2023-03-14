@@ -60,7 +60,6 @@ def del_contact():
 # редактирует контакт в справочнике
 def edit_contact():
     with open(TEXTFILE, 'r', encoding='utf-8') as file:
-       with open(TEXTFILE, 'r', encoding='utf-8') as file:
         book = file.read().split('\n')
         find = input('Введите данные контакта который хотите изменить: ')
         index = 0
