@@ -21,14 +21,7 @@ def main():
             case "del": del_contact()
             case "stop": i = False
             case _:
-                print('нет такой команды')
-
-        # if comand == 'add': add_contact()
-        # elif comand == 'find': search_contact()
-        # elif comand == 'show': show_phonebook()
-        # elif comand == 'edit': edit_contact()
-        # elif comand == 'del': del_contact()
-        # elif comand == 'stop': i = False
+                print('Нет такой команды!')
     
 
 if __name__ == '__main__':
