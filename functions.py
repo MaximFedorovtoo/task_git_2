@@ -30,14 +30,6 @@ def search_contact():
         index = 1
         temp = list()
         for i in book:
-            # match i:
-            #     case i if find.lower() in i.lower():
-            #         print(f'{index}. {i}')
-            #         index +=1
-                # case _:
-                #     print('Нет такого контакта!')
-                #     print(type(i))
-    
             if find.lower() in i.lower():
                 print(f'{index}. {i}')
                 temp.append(i)
