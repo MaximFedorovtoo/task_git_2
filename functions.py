@@ -3,20 +3,16 @@ TEXTFILE = "phonebook.txt"
 def contact():
     array = list()
     for i in range(4):
-        if i == 0:
-           array.append(input('Введите фамилию: '))
-        elif i == 1:
-           array.append(input('Введите имя: '))
-        elif i == 2:
-           array.append(input('Введите отчество: '))
-        elif i == 3:
-           array.append(input('Введите номер телефона: '))
-           while True:
-            if  array[3].isdigit():
-              break
-            else:
-                print('Вы вввели строку, введите пожалуйста номер телефона!')
-                array[3] = input('Введите номер телефона: ')
+        match i:
+            case 0: array.append(input('Введите фамилию: '))
+            case 1: array.append(input('Введите имя: '))
+            case 2: array.append(input('Введите отчество: '))
+            case 3: 
+                array.append(input('Введите номер телефона: '))
+                while not array[3].isdigit():
+                        print('Вы вввели строку, введите пожалуйста номер телефона!')
+                        array[3] = input('Введите номер телефона: ')
+                else: break
     cont = f'{array[0]} {array[1]} {array[2]} | {int(array[3])}'
     return cont
 
@@ -29,11 +25,19 @@ def add_contact():
 # поиск контакта по справочнику
 def search_contact():
     with open(TEXTFILE, 'r', encoding='utf-8') as file:
-        find = input('Введите поиск контакта: ')
+        find = str(input('Введите поиск контакта: '))
         book = file.read().split('\n')
         index = 1
         temp = list()
         for i in book:
+            # match i:
+            #     case i if find.lower() in i.lower():
+            #         print(f'{index}. {i}')
+            #         index +=1
+                # case _:
+                #     print('Нет такого контакта!')
+                #     print(type(i))
+    
             if find.lower() in i.lower():
                 print(f'{index}. {i}')
                 temp.append(i)
