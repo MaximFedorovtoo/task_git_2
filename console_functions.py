@@ -15,50 +15,62 @@ def print_menu():
 
 
 def crate():
-    title = input("Enter note title: ")
-    content = input("Enter note content: ")
+    title = input("\033[32mEnter note title: ")
+    content = input("Enter note content: \033[0m")
     manager.create_note(title, content)
 
 
 def read():
-    filter_choice = input("Do you want to filter notes by date? (Y/N): ")
-    if filter_choice.upper() == "Y":
-        year = input("Enter year format YYYY : ")
-        while not year.isdigit() or len(year) != 4:
-            print('You enter wrong format data')
-            year = input("Enter year format YYYY : ")
-        month = input("Enter month format MM: ")
-        while not month.isdigit() or len(month) != 2:
-            print('You enter wrong format data')
-            month = input("Enter month format MM: ")
-        day = input("Enter day format DD: ")
-        while not day.isdigit() or len(day) != 2:
-            print('You enter wrong format data')
-            day = input("Enter day format DD: ")
-        filter_date = f"{year}-{month}-{day}"
-        filter_date = datetime.datetime.strptime(filter_date, "%Y-%m-%d").date()
-        manager.read_notes(filter_date=filter_date)
-    else:
-        manager.read_notes()
+    try:
+        filter_choice = input("Do you want to filter notes by date? (Y/N): ")
+        if filter_choice.upper() == "Y":
+            year = input("\033[32mEnter year format YYYY : \033[0m")
+            while not year.isdigit() or len(year) != 4:
+                print('\033[3;31mYou enter wrong format data\033[0m')
+                year = input("\033[32mEnter year format YYYY : \033[0m")
+            month = input("\033[32mEnter month format MM: \033[0m")
+            while not month.isdigit() or len(month) != 2:
+                print('\033[3;31mYou enter wrong format data\033[0m')
+                month = input("\033[32mEnter month format MM: \033[0m")
+            day = input("\033[32mEnter day format DD: \033[0m")
+            while not day.isdigit() or len(day) != 2:
+                print('\033[3;31mYou enter wrong format data\033[0m')
+                day = input("\033[32mEnter day format DD: \033[0m")
+            filter_date = f"{year}-{month}-{day}"
+            filter_date = datetime.datetime.strptime(filter_date, "%Y-%m-%d").date()
+            manager.read_notes(filter_date=filter_date)
+        else:
+            manager.read_notes()
+    except ValueError:
+        print("\033[3;31mYou have an error in the date\033[0m")
 
 
 def find():
-    note_id = int(input("Enter note ID: "))
-    note = manager.get_note_by_id(note_id)
-    if note:
-        print("Note details:")
-        print(note)
-    else:
-        print("Note not found.")
+    try:
+        note_id = int(input("Enter note ID: "))
+        note = manager.get_note_by_id(note_id)
+        if note:
+            print("Note details:")
+            print(note)
+        else:
+            print("Note not found.")
+    except ValueError:
+        print("\033[3;31mThe entered ID must be a number\033[0m")
 
 
 def delete():
-    note_id = int(input("Enter note ID: "))
-    manager.delete_note(note_id)
+    try:
+        note_id = int(input("Enter note ID: "))
+        manager.delete_note(note_id)
+    except ValueError:
+        print("\033[3;31mThe entered ID must be a number\033[0m")
 
 
 def edit():
-    note_id = int(input("Enter note ID: "))
-    new_title = input("Enter new note title: ")
-    new_content = input("Enter new note content: ")
-    manager.edit_note(note_id, new_title, new_content)
+    try:
+        note_id = int(input("Enter note ID: "))
+        new_title = input("Enter new note title: ")
+        new_content = input("Enter new note content: ")
+        manager.edit_note(note_id, new_title, new_content)
+    except ValueError:
+        print("\033[3;31mThe entered ID must be a number\033[0m")
