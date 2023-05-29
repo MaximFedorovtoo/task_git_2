@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from console import console
 
 
@@ -9,6 +10,8 @@ def main():
 if __name__ == "__main__":
     main()
 =======
+=======
+>>>>>>> parent of 63980a6 (done)
 from functions import *
 
 
@@ -36,5 +39,9 @@ def main():
     
 
 if __name__ == '__main__':
+<<<<<<< HEAD
+    main()
+>>>>>>> parent of 63980a6 (done)
+=======
     main()
 >>>>>>> parent of 63980a6 (done)
